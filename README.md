@@ -314,14 +314,13 @@ public class YearDynamicStandardShardingAlgorithm extends DynamicStandardShardin
 **7.配置**
 
 ```properties
-# 分表策略,配置actual-data-nodes会参数第一张表，动态分区会自动创建之后的所有表（每天定时创建），表名称的日期格式要与实际分区格式保持一致,
-# actual-data-nodes配置规则是是固定写法， 数据源名.逻辑表名_$->{[最小分区时间]}
-spring.shardingsphere.sharding.tables.{逻辑表名}.actual-data-nodes=ds0.day_partition_table_$->{20210101..20210111}
+# 分表策略
+spring.shardingsphere.sharding.tables.day_partition_table.actual-data-nodes=ds0.day_partition_table_$->{20210101..20210111}
 # 指定分区字段
-spring.shardingsphere.sharding.tables.{逻辑表名}.table-strategy.standard.sharding-column=partitionDate
+spring.shardingsphere.sharding.tables.day_partition_table.table-strategy.standard.sharding-column=partitionDate
 # 自定义分表算法
-spring.shardingsphere.sharding.tables.{逻辑表名}.table-strategy.standard.precise-algorithm-class-name=cc.bbmax.shardingjdbc.dynamictable.sharding.DayDynamicStandardShardingAlgorithm
-spring.shardingsphere.sharding.tables.{逻辑表名}.table-strategy.standard.range-algorithm-class-name=cc.bbmax.shardingjdbc.dynamictable.sharding.DayDynamicStandardShardingAlgorithm
+spring.shardingsphere.sharding.tables.day_partition_table.table-strategy.standard.precise-algorithm-class-name=cc.bbmax.shardingjdbc.dynamictable.sharding.DayDynamicStandardShardingAlgorithm
+spring.shardingsphere.sharding.tables.day_partition_table.table-strategy.standard.range-algorithm-class-name=cc.bbmax.shardingjdbc.dynamictable.sharding.DayDynamicStandardShardingAlgorithm
 ```
 
 
